@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Users Info</title>
+</head>
+<body>
+
+<form th:action="@{/search}" th:object="${filteredCriteria}" method="POST">
+
+<label>Search by Country </label>
+
+    <select name="country">
+        <option label="All"/>
+    <option th:each="country : ${countryList}"
+    th:text ="${country}"/>
+</select>
+
+    <label>Search by State </label>
+
+<select name="state">
+    <option label="All"/>
+    <option th:each="state : ${stateList}"
+            th:text ="${state}"/>
+</select>
+
+<input type="submit" value="search"/>
+
+</form>
+
+
+<table class="table table-bordered table-striped" border="2dp">
+    <thead>
+    <tr>
+        <th> Name </th>
+        <th> Number </th>
+        <th> Country </th>
+        <th> State </th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="customer : ${customers}">
+        <td><span th:text="${customer.name}"> Name </span></td>
+        <td><span th:text="${customer.phoneNumber}"> Number </span></td>
+        <td><span th:text="${customer.country}"> Country </span></td>
+        <td><span th:text="${customer.state}"> State </span></td>
+    </tr>
+    </tbody>
+</table>
+
+<div th:if="${customers.totalPages > 0}" class="pagination"
+     th:each="pageNo : ${pageNumbers}">
+    <a th:href="@{/(size=${customers.size}, page=${pageNo})}"
+       th:text=${pageNo}
+       th:class="${pageNo==customers.number +1} ? active"></a>
+</div>
+
+</body>
+</html>
