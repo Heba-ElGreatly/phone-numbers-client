@@ -12,8 +12,8 @@ and the other allow you to filter data by country/state, you can choose country/
 
 
 ## How To Run java application
-1- open cmd at code location 
-2- build the code using --> mvn clean package -DskipTests
+1- open cmd at code location  <br /> 
+2- build the code using --> mvn clean package -DskipTests   <br />
 3- run the app --> java -jar {jar path}\phoneNumbersValidationClient-1.0-SNAPSHOT.jar
 
 
